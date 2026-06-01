@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Network Dashboard</title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>🌐 Network Dashboard</h1>
+
+        <form>
+
+            <input
+                type="text"
+                name="host"
+                placeholder="Enter IP or website">
+
+            <button type="submit">
+                Test
+            </button>
+
+        </form>
+
+        <div
+        class="status"
+        style="color: {{ color }};">
+
+            {{ status }}
+
+        </div>
+
+        <div class="logs">
+
+            <h2>📜 History</h2>
+
+            {% for item in history[::-1] %}
+
+                <p>
+                    {{ item.host }}
+                    →
+                    {{ item.status }}
+                </p>
+
+            {% endfor %}
+
+            <br>
+
+            <a href="/clear">
+
+                <button>
+                    Clear History
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
